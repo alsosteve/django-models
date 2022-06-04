@@ -6,8 +6,8 @@ from .models import Snack
 
 class SnacksTests(TestCase):
     def setUp(self):
-        reviewer = get_user_model().objects.create(username="tester",password="tester")
-        Snack.objects.create(name="rake", reviewer=reviewer)
+        purchaser = get_user_model().objects.create(username="tester",password="tester")
+        Snack.objects.create(name="rake", purchaser=purchaser)
 
     def test_list_page_status_code(self):
         url = reverse('snack_list')
@@ -26,8 +26,9 @@ class SnacksTests(TestCase):
         snacks = response.context['object_list']
         self.assertEqual(len(snacks), 1)
         self.assertEqual(snacks[0].name, "rake")
-        self.assertEqual(snacks[0].rating, 0)
-        self.assertEqual(snacks[0].reviewer.username, "tester")
+        print(snacks[0].description)
+        self.assertEqual(snacks[0].description, '')
+        self.assertEqual(snacks[0].purchaser.username, "tester")
 
     def test_detail_page_status_code(self):
         url = reverse('snack_detail',args=(1,))
@@ -45,5 +46,5 @@ class SnacksTests(TestCase):
         response = self.client.get(url)
         snack = response.context['snack']
         self.assertEqual(snack.name, "rake")
-        self.assertEqual(snack.rating, 0)
-        self.assertEqual(snack.reviewer.username, "tester")
+        self.assertEqual(snack.description, '')
+        self.assertEqual(snack.purchaser.username, "tester")
