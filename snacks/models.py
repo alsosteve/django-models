@@ -14,6 +14,6 @@ class Snack(models.Model):
   # add description TextField
   description = models.TextField(max_length=500)
   
-  # user friendly display
+  # user friendly display in admin
   def __str__(self):
         return self.name
