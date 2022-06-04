@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # local
-    'snacks',
+    'snacks', # Add snacks app to project
 ]
 
 MIDDLEWARE = [
