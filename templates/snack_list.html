@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Snack List Page</h1>
+
+    {% for snack in object_list %}
+        <p>{{ snack.name }}</p>
+    {% endfor %}
+{% endblock content %}
